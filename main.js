@@ -1,4 +1,4 @@
-const input = document.querySelectorAll(".form-input");
+const inputs = document.querySelectorAll(".form-input");
 const form = document.querySelector(".sign-up-form");
 
 function showError(element) {
@@ -19,17 +19,19 @@ form.noValidate = true;
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  input.forEach((x) => {
+  inputs.forEach((field) => {
     if (
-      x.value.trim() === "" ||
-      (x.id === "email" &&
-        !/^[a-z0-9_+-]+@[a-z0-9]+\.[a-z]{2,}$/i.test(x.value))
+      field.value.trim() === "" ||
+      (field.id === "email" &&
+        !/^[a-z0-9_+-]+@[a-z0-9]+\.[a-z]{2,}$/i.test(field.value))
     ) {
-      showError(x);
+      showError(field);
     } else {
-      hideError(x);
+      hideError(field);
     }
   });
 });
 
-input.forEach((x) => x.addEventListener("input", () => hideError(x)));
+inputs.forEach((field) =>
+  field.addEventListener("input", () => hideError(field)),
+);
