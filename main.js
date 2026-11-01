@@ -22,8 +22,7 @@ form.addEventListener("submit", (e) => {
   inputs.forEach((field) => {
     if (
       field.value.trim() === "" ||
-      (field.id === "email" &&
-        !/^[a-z0-9_+-]+@[a-z0-9]+\.[a-z]{2,}$/i.test(field.value))
+      (field.id === "email" && field.validity.typeMismatch)
     ) {
       showError(field);
     } else {
